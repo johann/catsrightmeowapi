@@ -23,7 +23,8 @@ final class CatsController {
             return try drop.view.make("cat")
         }
         drop.get("videos",String.self) { request, after in
-            return try self.getMoreVideos(request: request, after: after)
+             return try drop.view.make("cat")
+           // return try self.getMoreVideos(request: request, after: after)
         }
         drop.get("videos", handler:getVideos)
         drop.get("gifs", handler:getGifs)
