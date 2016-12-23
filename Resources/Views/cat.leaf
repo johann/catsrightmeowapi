@@ -5,11 +5,5 @@
 
 }
 #export("body") {
-  <div class="row">
-    #loop(cats, "cat") {
-      <div class="col-xs-6 col-md-3">
-          <img width="250" height="250" src=#(cat)>
-      </div>
-    }
-  </div>
+  <p>Hello</p>
 }

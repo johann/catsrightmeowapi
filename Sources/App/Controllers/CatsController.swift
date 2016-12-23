@@ -14,6 +14,9 @@ final class CatsController {
     
     let url = "https://www.reddit.com/r/catgifs/hot.json?limit=100"
     func addRoutes(drop:Droplet) {
+        drop.get("") { request in
+            return try drop.view.make("cat")
+        }
         drop.get("videos",String.self) { request, after in
             return try self.getMoreVideos(request: request, after: after)
         }
