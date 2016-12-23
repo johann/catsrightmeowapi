@@ -15,11 +15,8 @@ final class CatsController {
     let url = "https://www.reddit.com/r/catgifs/hot.json?limit=100"
     func addRoutes(drop:Droplet) {
         drop.get("") { request in
-            log.verbose("not so important")
-            log.debug("something to debug")
-            log.info("a nice information")
-            log.warning("oh no, that won’t be good")
-            log.error("ouch, an error did occur!")
+            log.verbose("DEFAULT")
+            
             return try drop.view.make("cat")
         }
         drop.get("videos",String.self) { request, after in
@@ -103,16 +100,20 @@ final class CatsController {
        log.verbose("not going")
         var catArray = [CatVideo]()
         let next = response.data["data","after"]?.string ?? ""
-        log.verbose("\(response)")
+        log.verbose("Got a response")
         log.verbose("\(next)")
         let linkArray = response.data["data", "children", "data"]?.array?.flatMap({$0.object}) ?? []
-        
+        log.verbose("\(linkArray.count)")
         for link in linkArray {
             if let title = link["title"]?.string, let url = link["url"]?.string, let thumbnail = link["thumbnail"]?.string {
                 var strippedTitle = title
+                log.verbose("before strip end")
                 strippedTitle.stripEnd()
+                log.verbose("after strip end")
                 
+                log.verbose("before range")
                 if url.range(of: "tumblr") == nil {
+                     log.verbose("after range")
                     let urlCopy: String
                     if url.hasSuffix("gif") {
                         urlCopy = url.replacingOccurrences(of: "gif", with: "mp4")
@@ -129,6 +130,7 @@ final class CatsController {
             }
             
         }
+        
         
         
         return try JSON(node:["cats":catArray.makeNode(),
