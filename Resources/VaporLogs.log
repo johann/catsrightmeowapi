@@ -1,0 +1,8 @@
+17:59:14.413 [38;5;38mINFO[0m Droplet+Responder.respond():13 - GET /
+17:59:14.418 [38;5;251mVERBOSE[0m CatsController.addRoutes():18 - not so important
+17:59:14.418 [38;5;35mDEBUG[0m CatsController.addRoutes():19 - something to debug
+17:59:14.419 [38;5;38mINFO[0m CatsController.addRoutes():20 - a nice information
+17:59:14.419 [38;5;178mWARNING[0m CatsController.addRoutes():21 - oh no, that won’t be good
+17:59:14.419 [38;5;197mERROR[0m CatsController.addRoutes():22 - ouch, an error did occur!
+17:59:14.450 [38;5;38mINFO[0m Droplet+Responder.respond():13 - GET /styles/app.css
+17:59:14.486 [38;5;178mWARNING[0m Droplet+Responder.respond():56 - Response had no 'Content-Type' header.

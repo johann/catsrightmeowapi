@@ -11,7 +11,7 @@ catController.addRoutes(drop: drop)
 let console = ConsoleDestination()  // log to Xcode Console in color
 let file = FileDestination()  // log to file in color
 
-file.logFileURL = URL(fileURLWithPath: "VaporLogs.log") // set log file
+file.logFileURL = URL(fileURLWithPath: "\(drop.resourcesDir)/VaporLogs.log") // set log file
 let sbProvider = SwiftyBeaverProvider(destinations: [console, file])
 drop.addProvider(sbProvider)
 
