@@ -96,7 +96,13 @@ final class CatsController {
         let response = try drop.client.get(url)
         var catArray = [CatVideo]()
         let next = response.data["data","after"]?.string ?? ""
-        
+        log.verbose("\(response)")
+        log.verbose("\(next)")
+        log.verbose("not so important")
+        log.debug("something to debug")
+        log.info("a nice information")
+        log.warning("oh no, that won’t be good")
+        log.error("ouch, an error did occur!")
         
         let linkArray = response.data["data", "children", "data"]?.array?.flatMap({$0.object}) ?? []
         
