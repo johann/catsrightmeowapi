@@ -2,6 +2,6 @@
     "tls": {
         "verifyHost": true,
         "verifyCertificates": true,
-        "certificates": "mozilla"
+        "User-Agent": "cats:com.herokuapp.catsrightmeow:v.1.2.3"
     }
 }

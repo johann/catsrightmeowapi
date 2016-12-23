@@ -98,18 +98,13 @@ final class CatsController {
         
     }
     func getVideos(request: Request) throws -> ResponseRepresentable {
-        
+       log.verbose("getting videos")
         let response = try drop.client.get(url)
+       log.verbose("not going")
         var catArray = [CatVideo]()
         let next = response.data["data","after"]?.string ?? ""
         log.verbose("\(response)")
         log.verbose("\(next)")
-        log.verbose("not so important")
-        log.debug("something to debug")
-        log.info("a nice information")
-        log.warning("oh no, that won’t be good")
-        log.error("ouch, an error did occur!")
-        
         let linkArray = response.data["data", "children", "data"]?.array?.flatMap({$0.object}) ?? []
         
         for link in linkArray {
