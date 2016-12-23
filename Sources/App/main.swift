@@ -8,6 +8,7 @@ let drop = Droplet()
 let catController = CatsController()
 catController.addRoutes(drop: drop)
 
+
 let console = ConsoleDestination()  // log to Xcode Console in color
 let file = FileDestination()  // log to file in color
 
