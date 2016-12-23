@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    #import("head")
+</head>
+    <body>
+      <div class="container">
+        #import("body")
+      </div>
+    </body>
+</html>
