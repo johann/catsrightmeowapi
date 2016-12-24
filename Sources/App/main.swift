@@ -5,17 +5,16 @@ import SwiftyBeaverVapor
 import SwiftyBeaver
 
 let drop = Droplet()
-let catController = CatsController()
-catController.addRoutes(drop: drop)
+let petController = PetsController()
+petController.addRoutes(drop: drop)
 
 
-let console = ConsoleDestination()  // log to Xcode Console in color
-let file = FileDestination()  // log to file in color
+let console = ConsoleDestination()
+let file = FileDestination()
 
-file.logFileURL = URL(fileURLWithPath: "\(drop.resourcesDir)/VaporLogs.log") // set log file
+file.logFileURL = URL(fileURLWithPath: "\(drop.resourcesDir)/VaporLogs.log")
 let sbProvider = SwiftyBeaverProvider(destinations: [console, file])
 drop.addProvider(sbProvider)
 
-// shortcut to avoid writing app.log all the time
 let log = drop.log.self
 drop.run()

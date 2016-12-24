@@ -8,11 +8,14 @@
 import Vapor
 import Foundation
 
-final class CatVideo: NodeRepresentable {
+typealias Dimension = (Double,Double)
+
+final class Video: NodeRepresentable {
     var id: Node?
     var url: String
     var thumbnail: String
     var title: String
+    var dimension: Dimension!
     
     init(url:String, thumbnail:String, title:String) {
         self.url = url

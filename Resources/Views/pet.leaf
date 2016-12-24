@@ -5,5 +5,5 @@
 
 }
 #export("body") {
-  <p>Hello</p>
+  <p>Hello There feel free to check out these <a href="/cats/videos">Cats</a> or <a href="/dogs/videos">Dogs</a></p>
 }
