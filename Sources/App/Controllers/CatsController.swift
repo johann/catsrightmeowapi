@@ -98,6 +98,7 @@ final class CatsController {
     }
     func getVideos(request: Request) throws -> ResponseRepresentable {
        log.verbose("getting videos")
+        return try JSON(["Success":true])
         let response = try drop.client.get(url)
        log.verbose("not going")
         var catArray = [CatVideo]()
@@ -107,7 +108,7 @@ final class CatsController {
         
         let linkArray = response.data["data", "children", "data"]?.array?.flatMap({$0.object}) ?? []
         log.verbose("\(linkArray.count)")
-        return try JSON(["Success":true])
+        
         for link in linkArray {
             if let title = link["title"]?.string, let url = link["url"]?.string, let thumbnail = link["thumbnail"]?.string {
                 var strippedTitle = title
