@@ -105,9 +105,9 @@ final class CatsController {
                 if url.range(of: "tumblr") == nil {
                     let urlCopy: String
                     if url.hasSuffix("gif") {
-                        urlCopy = url.replacingOccurrences(of: "gif", with: "mp4")
-                        let catVideo = CatVideo(url: urlCopy, thumbnail: thumbnail, title: strippedTitle)
-                        catArray.append(catVideo)
+//                        urlCopy = url.replacingOccurrences(of: "gif", with: "mp4")
+//                        let catVideo = CatVideo(url: urlCopy, thumbnail: thumbnail, title: strippedTitle)
+//                        catArray.append(catVideo)
                     } else if url.hasSuffix("gifv") {
                         urlCopy = url.replacingOccurrences(of: "gifv", with: "mp4")
                         let catVideo = CatVideo(url: urlCopy, thumbnail: thumbnail, title: strippedTitle)
@@ -144,9 +144,9 @@ final class CatsController {
                 if url.range(of: "tumblr") == nil {
                     let urlCopy: String
                     if url.hasSuffix("gif") {
-                        urlCopy = url.replacingOccurrences(of: "gif", with: "mp4")
-                        let catVideo = CatVideo(url: urlCopy, thumbnail: thumbnail, title: strippedTitle)
-                        catArray.append(catVideo)
+//                        urlCopy = url.replacingOccurrences(of: "gif", with: "mp4")
+//                        let catVideo = CatVideo(url: urlCopy, thumbnail: thumbnail, title: strippedTitle)
+//                        catArray.append(catVideo)
                     } else if url.hasSuffix("gifv") {
                         urlCopy = url.replacingOccurrences(of: "gifv", with: "mp4")
                         let catVideo = CatVideo(url: urlCopy, thumbnail: thumbnail, title: strippedTitle)
