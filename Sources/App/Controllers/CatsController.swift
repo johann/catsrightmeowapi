@@ -142,7 +142,9 @@ final class CatsController {
             return try JSON(node:["cats":catArray.makeNode(),
                                   "next":next])
         } catch let e as Error {
-            print(e.localizedDescription)
+            
+            return try JSON(node:["error":"\(e.localizedDescription)"])
+           
         }
         
         
