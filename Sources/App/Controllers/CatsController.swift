@@ -143,7 +143,7 @@ final class CatsController {
                                   "next":next])
         } catch let e as Error {
             
-            return try JSON(node:["error":"\(e.localizedDescription)"])
+            return try JSON(node:["error":"\(e)"])
            
         }
         
