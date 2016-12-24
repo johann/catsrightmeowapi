@@ -37,6 +37,8 @@ final class CatsController {
         
         let linkArray = response.data["data", "children", "data"]?.array?.flatMap({$0.object}) ?? []
         
+        
+        
         for link in linkArray {
             if let title = link["title"]?.string, let url = link["url"]?.string, let thumbnail = link["thumbnail"]?.string {
                 var strippedTitle = title
@@ -102,8 +104,10 @@ final class CatsController {
         let next = response.data["data","after"]?.string ?? ""
         log.verbose("Got a response")
         log.verbose("\(next)")
+        
         let linkArray = response.data["data", "children", "data"]?.array?.flatMap({$0.object}) ?? []
         log.verbose("\(linkArray.count)")
+        return try JSON(["Success":true])
         for link in linkArray {
             if let title = link["title"]?.string, let url = link["url"]?.string, let thumbnail = link["thumbnail"]?.string {
                 var strippedTitle = title
