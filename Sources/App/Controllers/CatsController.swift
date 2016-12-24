@@ -98,48 +98,57 @@ final class CatsController {
     }
     func getVideos(request: Request) throws -> ResponseRepresentable {
        log.verbose("getting videos")
-        return try JSON(["Success":true])
-        let response = try drop.client.get(url)
-       log.verbose("not going")
-        var catArray = [CatVideo]()
-        let next = response.data["data","after"]?.string ?? ""
-        log.verbose("Got a response")
-        log.verbose("\(next)")
-        
-        let linkArray = response.data["data", "children", "data"]?.array?.flatMap({$0.object}) ?? []
-        log.verbose("\(linkArray.count)")
-        
-        for link in linkArray {
-            if let title = link["title"]?.string, let url = link["url"]?.string, let thumbnail = link["thumbnail"]?.string {
-                var strippedTitle = title
-                log.verbose("before strip end")
-                strippedTitle.stripEnd()
-                log.verbose("after strip end")
-                
-                log.verbose("before range")
-                if url.range(of: "tumblr") == nil {
-                     log.verbose("after range")
-                    let urlCopy: String
-                    if url.hasSuffix("gif") {
-                        urlCopy = url.replacingOccurrences(of: "gif", with: "mp4")
-                        let catVideo = CatVideo(url: urlCopy, thumbnail: thumbnail, title: strippedTitle)
-                        catArray.append(catVideo)
-                    } else if url.hasSuffix("gifv") {
-                        urlCopy = url.replacingOccurrences(of: "gifv", with: "mp4")
-                        let catVideo = CatVideo(url: urlCopy, thumbnail: thumbnail, title: strippedTitle)
-                        catArray.append(catVideo)
+        do {
+            let response = try drop.client.get(url)
+            
+            log.verbose("not going")
+            var catArray = [CatVideo]()
+            let next = response.data["data","after"]?.string ?? ""
+            log.verbose("Got a response")
+            log.verbose("\(next)")
+            
+            let linkArray = response.data["data", "children", "data"]?.array?.flatMap({$0.object}) ?? []
+            log.verbose("\(linkArray.count)")
+            
+            for link in linkArray {
+                if let title = link["title"]?.string, let url = link["url"]?.string, let thumbnail = link["thumbnail"]?.string {
+                    var strippedTitle = title
+                    log.verbose("before strip end")
+                    strippedTitle.stripEnd()
+                    log.verbose("after strip end")
+                    
+                    log.verbose("before range")
+                    if url.range(of: "tumblr") == nil {
+                        log.verbose("after range")
+                        let urlCopy: String
+                        if url.hasSuffix("gif") {
+                            urlCopy = url.replacingOccurrences(of: "gif", with: "mp4")
+                            let catVideo = CatVideo(url: urlCopy, thumbnail: thumbnail, title: strippedTitle)
+                            catArray.append(catVideo)
+                        } else if url.hasSuffix("gifv") {
+                            urlCopy = url.replacingOccurrences(of: "gifv", with: "mp4")
+                            let catVideo = CatVideo(url: urlCopy, thumbnail: thumbnail, title: strippedTitle)
+                            catArray.append(catVideo)
+                        }
+                        
                     }
                     
                 }
                 
             }
             
+            
+            
+            return try JSON(node:["cats":catArray.makeNode(),
+                                  "next":next])
+        } catch let e {
+            print(e.localizedDescription)
         }
         
         
+        return Abort.badRequest as! ResponseRepresentable
         
-        return try JSON(node:["cats":catArray.makeNode(),
-                              "next":next])
+       
     }
     func getMoreVideos(request: Request, after: String) throws -> ResponseRepresentable {
         
